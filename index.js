@@ -61,27 +61,24 @@ window.onload = () => {
     for (let i = 0; i < NUM_STARS; i++){
 
         const startPos = new Vector2D(
-            Math.random() * canvas.width,
-            Math.random() * canvas.height
+            250, 300
         );
         // Direction as unit vector
         const direction = (() => {
-            const theta = Math.random() * 2 * Math.PI;
-            
             return new Vector2D(
-                Math.cos(theta),
-                Math.sin(theta)
+                1,
+                0
             );
         })();
 
         const sizePercent = Math.random(); 
-        const size = sizePercent * MAX_SIZE;
+        const size = 50;
         
         const speedParallaxModif = Math.pow(sizePercent, PARALLAX_SPEED_CHANGE_RATE) * MAX_PARALLAX_SPEED_MODIF;
-        const speed = Math.random() * MAX_SPEED * speedParallaxModif;
+        const speed = 120;
         
-        const duration = MIN_DURATION + Math.random() * (MAX_DURATION - MIN_DURATION);
-        const startPhase = Math.random() * duration;
+        const duration = 5;
+        const startPhase = 0;
 
         stars.push({
             startPos,
