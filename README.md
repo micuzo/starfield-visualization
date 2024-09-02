@@ -33,6 +33,7 @@ For every star, the following are randomized:
 - Size
 
 ![Star lifecycle](assets/star-lifecycle.gif)
+
 You can tweak the following parameters to your liking:
 
 - `MAX_SPEED`: Maximum speed at which the stars can move. 
