@@ -20,10 +20,13 @@ class Canvas {
         this.#canvas.height = window.innerHeight;
     }
 
-    animate = (f) => {
+    startAnimation = (f, ...args) => {
         if (this.#requestID !== undefined) window.cancelAnimationFrame(this.#requestID);
-        this.#requestID = window.requestAnimationFrame(() => {
-            f(this);
-        });
+
+        const animate = () => {
+            f(this, ...args);
+            window.requestAnimationFrame(animate);
+        }
+        this.#requestID = window.requestAnimationFrame(animate);
     }
 }

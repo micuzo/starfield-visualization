@@ -3,11 +3,6 @@
  */
 let canvas;
 
-/**
- * @type {Star[]}
- */
-let stars = [];
-
 //-- Params
 const NUM_STARS = 1200;
 const MAX_SPEED = 2;
@@ -63,7 +58,7 @@ const createStars = () => {
  * @param {number} t - Time elapsed since the start of execution.
  * @param {CanvasRenderingContext2D} ctx - The rendering context for drawing on the canvas.
  */
-const renderScene = () => {
+const renderScene = (canvas, stars) => {
     const t = canvas.curTime;
     const ctx = canvas.ctx;
 
@@ -99,14 +94,14 @@ const renderScene = () => {
         ctx.arc(newPos.x, newPos.y, star.size, 0, Math.PI * 2);
         ctx.fill();
     });
-
-    window.requestAnimationFrame(renderScene);
 }
 
 window.onload = () => {
     canvas = new Canvas();
-    canvas.updateDimensions();
-    stars = createStars();
-    window.onresize = canvas.updateDimensions;
-    window.requestAnimationFrame(renderScene);
+    const startScene = () => {
+        canvas.updateDimensions();
+        canvas.startAnimation(renderScene, createStars());
+    }
+    window.onresize = startScene;
+    startScene();
 };
